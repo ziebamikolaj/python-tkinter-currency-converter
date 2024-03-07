@@ -55,9 +55,10 @@ class CurrencyConverter:
         
         # converting from PLN to desired currency
         if(to_currency == "USD"):
-            amount = amount / self.usd_rate
+            amount = str(round(amount / self.usd_rate, 2)) + " $"
         elif(to_currency == "GOLD"):
-            amount = amount / self.gold_rate
-        
-        result_value.set(round(amount,2))
+            amount = str(round(amount / self.gold_rate / 1000, 2)) + " kg" # gold is measured in grams, we want to convert to kilos
+        elif(to_currency == "PLN"):
+            amount = str(round(amount, 2)) + " PLN"
+        result_value.set(amount)
         
